@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://jupyterlite.readthedocs.io/en/latest/_static/styles.css">
+    <title>JupyterLite</title>
+</head>
+<body>
+    <h1>Run Python Code</h1>
+    <div id="output"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyterlite/manager@latest"></script>
+    <script>
+        async function runPython() {
+            const kernel = new JupyterLite.Kernel();
+            const outputDiv = document.getElementById("output");
+            const code = `print("Hello from Python in WebView!")`;
+
+            const { content } = await kernel.execute(code);
+            outputDiv.innerHTML = content;
+        }
+        runPython();
+    </script>
+</body>
+</html>

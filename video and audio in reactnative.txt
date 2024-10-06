@@ -1,0 +1,4 @@
+const newImageUrl = `https://yourdomain.com/path-to-your-images/image${randomImageNumber}.png`;
+
+
+https://yourdomain.com/path-to-your-audios/audio${randomAudioNumber}.mp3
