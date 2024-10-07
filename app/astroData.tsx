@@ -28,20 +28,23 @@ export default function AstrologyDataComponent({ result }) {
   const data = {
     planetData: result.varga_result,
     centralText: 'D-2',
+    lagna: '(ल)',
   };
+
+  console.log(data.planetData)
 
   const htmlContent = `
   <!DOCTYPE html>
-  <html>
-  <head>
+<html>
+<head>
     <style>
         body { margin: 0; }
         canvas { border: 1px solid red; border-radius: 12px; }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <canvas id="canvas" width="970" height="887"></canvas>
-  <script>
+    <script>
         function wrapT(ctx, text, x, y, maxWidth, lineHeight) {
             const words = text.split(' ');
             let line = '';
@@ -60,7 +63,7 @@ export default function AstrologyDataComponent({ result }) {
             ctx.fillText(line, x, y);
         }
 
-        function writeDiamondChart(n, w) {
+        function writeDiamondChart(n, w, o) {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             const Z = Math.min(canvas.width, canvas.height) / 2; // Use the smaller dimension for scaling
@@ -114,13 +117,15 @@ export default function AstrologyDataComponent({ result }) {
         }
 
         // Example data, replace with actual data if needed
-        const planetNames = "${data.planetData}";
+        const planetNames = "${data.planetData}".split(',').map(name => name.replace(/ल/g, "ल"));
         const centralText = "${data.centralText}";
+        const o = "${data.lagna}";
 
-        writeDiamondChart(planetNames, centralText);
-</script>
+        writeDiamondChart(planetNames, centralText, o);
+    </script>
 </body>
 </html>
+
 
   `;
 
